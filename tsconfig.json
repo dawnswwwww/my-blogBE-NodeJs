@@ -1,0 +1,20 @@
+{
+    "compilerOptions": {
+        "target": "ES5",
+        "types": ["node"],
+        "typeRoots": ["./node_modules/@types"],
+        "module": "commonjs",
+        "emitDecoratorMetadata": true,
+				"experimentalDecorators": true,
+				"allowSyntheticDefaultImports": true,
+        "outDir": "build",
+        "lib": [
+            "es6"
+        ]
+		},
+		"exclude": [
+            "node_modules",
+            "./index.d.ts"
+		]
+
+}
