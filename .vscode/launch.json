@@ -8,7 +8,7 @@
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
       "name": "nodemon",
-      "program": "${workspaceFolder}/app.js",
+      "program": "${workspaceRoot}/app.ts",
       "request": "launch",
       "restart": true,
       "runtimeExecutable": "nodemon",
@@ -16,19 +16,6 @@
         "<node_internals>/**"
       ],
       "type": "pwa-node"
-    },
-        {
-            "type": "node",
-            "request": "launch",
-            "name": "启动程序",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
-            "program": "${workspaceFolder}/index.js",
-            "preLaunchTask": "tsc: build - tsconfig.json",
-            "outFiles": [
-                "${workspaceFolder}/build/**/*.js"
-            ]
-        }
+    }
     ]
 }

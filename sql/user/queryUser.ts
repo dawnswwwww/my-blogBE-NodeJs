@@ -16,6 +16,7 @@ module.exports = (params: userQuery) => {
               return
           } else {
               resolve(result) 
+              return
           }
         })
       } catch (error) {

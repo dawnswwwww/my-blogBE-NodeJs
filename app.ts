@@ -25,8 +25,10 @@ app.get('/', (req:any, res:any) => {
 })
 
 const sql = require('./sql/index.ts')
+const plugins = require('./plugins/index.ts')
 
 global.sql = sql
+global.plugins = plugins
 
 app.listen(serverConfig.port, () => {
 		console.log(`server is listenning at ${serverConfig.port}`)})
