@@ -1,7 +1,5 @@
-const generateToken = require('./token')
+const token = require('./token')
 
 module.exports = {
-    token: {
-        generateToken
-    }
+    token
 }

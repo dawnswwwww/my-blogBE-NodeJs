@@ -1,12 +1,13 @@
 module.exports = (req: any, res: any) => {
-    console.log(req.body)
+    // console.log(req.body)
+    console.log(req.cookies, 'cookies')
     console.log(sql)
     sql.user.queryUser(req.body).then((result: any) => { 
       // console.log(result)
-      res.header('Set-Cookie', 'SESSION=M2I2NWY4OTMtZTUxZC00OTU5LTg5MjAtMjBkNjlmNTRiNTg0; Path=/; HttpOnly;')
       if(result.length) {
         let token = plugins.token.generateToken({a: 1})
         console.log(token)
+        res.header('Set-Cookie', `tid=${token}; Path=/; HttpOnly;`)
         res.send({
           status: 'success',
           statusCode: 1,
