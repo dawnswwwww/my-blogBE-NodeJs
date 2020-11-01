@@ -1,6 +1,7 @@
 const noCheckLoginRequest = [
     '/login',
-    '/register'
+    '/register',
+    '/ViewArticleList'
 ]
 
 module.exports = {

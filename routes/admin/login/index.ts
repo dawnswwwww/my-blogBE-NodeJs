@@ -1,7 +1,7 @@
 module.exports = (req: any, res: any) => {
     // console.log(req.body)
     console.log(req.cookies, 'cookies')
-    console.log(sql)
+    console.log(req.session, 'session')
     sql.user.queryUser(req.body).then((result: any) => { 
       // console.log(result)
       if(result.length) {

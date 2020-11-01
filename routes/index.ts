@@ -1,5 +1,6 @@
-const admin = require('./admin/index.ts')
+const adminRoutes = require('./admin/index.ts')
 const articleRoutes = require('./article')
+const viewRoutes = require('./view')
 const config = require('./config')
 
 module.exports = (app: any) => {
@@ -21,15 +22,26 @@ module.exports = (app: any) => {
       }
       plugins.token.verify(req.cookies.tid).then((result: any) => {
         console.log(result)
+        // 重新设置token到cookie
+        res.header('Set-Cookie', `tid=${result}; Path=/; HttpOnly;`)
         next();
-      }).catch((err) => {
-        console.log(err)
+      }).catch((err: any) => {
+        console.log(err.name)
+        if(err.name === 'TokenExpiredError') {
+          res.send({
+            code: '111',
+            msg: 'token已过期'
+          })
+        } 
         res.send({
           msg: '未登录'
         })
       })
       // console.log(req.path)
     });
-    admin(app)
-    articleRoutes(app)
+    // admin(app)
+    // articleRoutes(app)
+    app.use(adminRoutes)
+    app.use(articleRoutes)
+    app.use(viewRoutes)
 }

@@ -34,7 +34,8 @@ const verify = (token: String) => {
             if (err) {
                 reject(err)
             } else {
-                resolve(result)
+                // 刷新token过期时间
+               resolve(tokenGenerator(result.params))
             }
         })
     })
