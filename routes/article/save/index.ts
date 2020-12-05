@@ -1,8 +1,9 @@
 module.exports = (req:any, res:any) => {
   console.log(req.body)
   sql.article.saveArticle({
-    uid: '1',
-    content: req.body.value
+    uid: req.userParams.uid,
+    content: req.body.value,
+    title: req.body.title || ''
   }).then(() => {
 
   })

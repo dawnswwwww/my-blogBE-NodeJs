@@ -13,8 +13,8 @@ module.exports = (app: any) => {
       res.header("Access-Control-Allow-Credentials", "true");
       res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
       res.header("Content-Type", "application/json;charset=utf-8");
-      console.log(req.body)
-      console.log(plugins)
+      console.log(req.url)
+      console.log(config.noCheckLoginRequest.includes(req.url))
       console.log(config)
       if (config.noCheckLoginRequest.includes(req.url)) {
         next()
@@ -22,8 +22,10 @@ module.exports = (app: any) => {
       }
       plugins.token.verify(req.cookies.tid).then((result: any) => {
         console.log(result)
+        // req中存储userParams
+        req.userParams = result.params
         // 重新设置token到cookie
-        res.header('Set-Cookie', `tid=${result}; Path=/; HttpOnly;`)
+        res.header('Set-Cookie', `tid=${result.token}; Path=/; HttpOnly;`)
         next();
       }).catch((err: any) => {
         console.log(err.name)

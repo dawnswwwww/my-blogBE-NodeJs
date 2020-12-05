@@ -35,7 +35,11 @@ const verify = (token: String) => {
                 reject(err)
             } else {
                 // 刷新token过期时间
-               resolve(tokenGenerator(result.params))
+                console.log([result])
+               resolve({
+                   token:tokenGenerator(result.params),
+                   params: result.params
+               })
             }
         })
     })

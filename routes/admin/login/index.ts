@@ -3,14 +3,16 @@ module.exports = (req: any, res: any) => {
     console.log(req.cookies, 'cookies')
     console.log(req.session, 'session')
     sql.user.queryUser(req.body).then((result: any) => { 
-      // console.log(result)
+      console.log(result)
       if(result.length) {
-        let token = plugins.token.generateToken({a: 1})
+        let token = plugins.token.generateToken({
+          uid: result[0].uid
+        })
         console.log(token)
         res.header('Set-Cookie', `tid=${token}; Path=/; HttpOnly;`)
         res.send({
           status: 'success',
-          statusCode: 1,
+          statusCode: 1,  
           msg: '登录成功',
         })
       } else {
